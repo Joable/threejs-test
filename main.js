@@ -3,6 +3,7 @@ import './style.css';
 import * as THREE from 'three';
 
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
+import { RGBELoader } from 'three/examples/jsm/Addons.js';
 
 const scene = new THREE.Scene();
 
@@ -36,9 +37,12 @@ scene.add(light, ambient);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
-const bgTexture = new THREE.TextureLoader().load('bg.jfif');
+const bgTexture = new RGBELoader().load('bg360.hdr', function(texture){
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    scene.background = texture;
+    scene.environment = texture;
+});
 
-scene.background = bgTexture;
 
 function animate(){
     requestAnimationFrame(animate);
