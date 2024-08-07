@@ -37,17 +37,25 @@ scene.add(light, ambient);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 
-const bgTexture = new RGBELoader().load('bg360.hdr', function(texture){
+/* const bgTexture = new RGBELoader().load('bg360.hdr', function(texture){
     texture.mapping = THREE.EquirectangularReflectionMapping;
     scene.background = texture;
     scene.environment = texture;
-});
+}); */
+
+const bgTexture = new THREE.TextureLoader().load('bg.jfif', function(texture){
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    scene.background = texture;
+    scene.environment = texture;
+})
 
 
 function animate(){
     requestAnimationFrame(animate);
 
     obunga.rotation.y += 0.01;
+
+    //scene.environment.rotation.y += 0.02;
 
     controls.update();
 
