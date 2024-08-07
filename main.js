@@ -53,9 +53,9 @@ const bgTexture = new THREE.TextureLoader().load('bg.jfif', function(texture){
 function animate(){
     requestAnimationFrame(animate);
 
-    obunga.rotation.y += 0.01;
+    //obunga.rotation.y += 0.01;
 
-    //scene.environment.rotation.y += 0.02;
+    scene.backgroundRotation.y += 0.01
 
     controls.update();
 
