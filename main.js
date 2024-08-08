@@ -4,6 +4,7 @@ import * as THREE from 'three';
 
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 import { RGBELoader } from 'three/examples/jsm/Addons.js';
+import { GLTFLoader } from 'three/examples/jsm/Addons.js';
 
 const scene = new THREE.Scene();
 
@@ -19,12 +20,21 @@ camera.position.setZ(30);
 
 renderer.render(scene, camera);
 
-const geometry = new THREE.ConeGeometry(8, 16, 15);
+/* const geometry = new THREE.ConeGeometry(8, 16, 15);
 const material = new THREE.MeshStandardMaterial( {color: 0xFF6347} );
 const obunga = new THREE.Mesh( geometry, material );
 
-scene.add(obunga);
+scene.add(obunga); */
 
+const loader = new GLTFLoader();
+
+loader.load('osakube.glb', function(gltf){
+    scene.add(gltf.scene);
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
 renderer.render( scene, camera );
 
 const light = new THREE.PointLight(0xFFFFFF);
